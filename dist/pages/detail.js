@@ -18,6 +18,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+/* global wx */
+
 
 var Search = function (_wepy$page) {
   _inherits(Search, _wepy$page);
@@ -34,7 +36,7 @@ var Search = function (_wepy$page) {
     }
 
     return _ret = (_temp = (_this2 = _possibleConstructorReturn(this, (_ref = Search.__proto__ || Object.getPrototypeOf(Search)).call.apply(_ref, [this].concat(args))), _this2), _this2.config = {
-      navigationBarTitleText: '电影详情'
+      'navigationBarTitleText': '电影详情'
     }, _this2.data = {
       movieInfo: {}
     }, _temp), _possibleConstructorReturn(_this2, _ret);
@@ -46,9 +48,10 @@ var Search = function (_wepy$page) {
       var _this = this;
       wx.showLoading();
       wx.request({
-        url: _this.$parent.globalData.apiUrl + '/movie/subject/' + options.id,
+        url: this.$parent.globalData.apiUrl + '/movie/subject/' + options.id,
         method: 'GET',
         success: function success(res) {
+          console.log(res);
           // 此处省略请求是否成功校验
           _this.movieInfo = res.data;
           _this.$apply();
@@ -64,4 +67,4 @@ var Search = function (_wepy$page) {
 
 Page(require('./../npm/wepy/lib/wepy.js').default.$createPage(Search , 'pages/detail'));
 
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRldGFpbC5qcyJdLCJuYW1lcyI6WyJTZWFyY2giLCJjb25maWciLCJuYXZpZ2F0aW9uQmFyVGl0bGVUZXh0IiwiZGF0YSIsIm1vdmllSW5mbyIsIm9wdGlvbnMiLCJfdGhpcyIsInd4Iiwic2hvd0xvYWRpbmciLCJyZXF1ZXN0IiwidXJsIiwiJHBhcmVudCIsImdsb2JhbERhdGEiLCJhcGlVcmwiLCJpZCIsIm1ldGhvZCIsInN1Y2Nlc3MiLCJyZXMiLCIkYXBwbHkiLCJoaWRlTG9hZGluZyIsInBhZ2UiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUNFOzs7Ozs7Ozs7Ozs7SUFFcUJBLE07Ozs7Ozs7Ozs7Ozs7O3lMQUNuQkMsTSxHQUFTO0FBQ1BDLDhCQUF3QjtBQURqQixLLFNBSVRDLEksR0FBTztBQUNMQyxpQkFBVztBQUROLEs7Ozs7OzJCQUlBQyxPLEVBQVM7QUFDZCxVQUFJQyxRQUFRLElBQVo7QUFDQUMsU0FBR0MsV0FBSDtBQUNBRCxTQUFHRSxPQUFILENBQVc7QUFDVEMsYUFBS0osTUFBTUssT0FBTixDQUFjQyxVQUFkLENBQXlCQyxNQUF6QixHQUFrQyxpQkFBbEMsR0FBc0RSLFFBQVFTLEVBRDFEO0FBRVRDLGdCQUFRLEtBRkM7QUFHVEMsZUFIUyxtQkFHREMsR0FIQyxFQUdJO0FBQ1g7QUFDQVgsZ0JBQU1GLFNBQU4sR0FBa0JhLElBQUlkLElBQXRCO0FBQ0FHLGdCQUFNWSxNQUFOO0FBQ0FYLGFBQUdZLFdBQUg7QUFDRDtBQVJRLE9BQVg7QUFVRDs7OztFQXRCaUMsZUFBS0MsSTs7a0JBQXBCcEIsTSIsImZpbGUiOiJkZXRhaWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgaW1wb3J0IHdlcHkgZnJvbSAnd2VweSc7XG5cbiAgZXhwb3J0IGRlZmF1bHQgY2xhc3MgU2VhcmNoIGV4dGVuZHMgd2VweS5wYWdlIHtcbiAgICBjb25maWcgPSB7XG4gICAgICBuYXZpZ2F0aW9uQmFyVGl0bGVUZXh0OiAn55S15b2x6K+m5oOFJyxcbiAgICB9O1xuXG4gICAgZGF0YSA9IHtcbiAgICAgIG1vdmllSW5mbzoge31cbiAgICB9O1xuXG4gICAgb25Mb2FkKG9wdGlvbnMpIHtcbiAgICAgIGxldCBfdGhpcyA9IHRoaXM7XG4gICAgICB3eC5zaG93TG9hZGluZygpO1xuICAgICAgd3gucmVxdWVzdCh7XG4gICAgICAgIHVybDogX3RoaXMuJHBhcmVudC5nbG9iYWxEYXRhLmFwaVVybCArICcvbW92aWUvc3ViamVjdC8nICsgb3B0aW9ucy5pZCxcbiAgICAgICAgbWV0aG9kOiAnR0VUJyxcbiAgICAgICAgc3VjY2VzcyhyZXMpIHtcbiAgICAgICAgICAvLyDmraTlpITnnIHnlaXor7fmsYLmmK/lkKbmiJDlip/moKHpqoxcbiAgICAgICAgICBfdGhpcy5tb3ZpZUluZm8gPSByZXMuZGF0YTtcbiAgICAgICAgICBfdGhpcy4kYXBwbHkoKTtcbiAgICAgICAgICB3eC5oaWRlTG9hZGluZygpO1xuICAgICAgICB9XG4gICAgICB9KVxuICAgIH1cbiAgfVxuIl19
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImRldGFpbC5qcyJdLCJuYW1lcyI6WyJTZWFyY2giLCJjb25maWciLCJkYXRhIiwibW92aWVJbmZvIiwib3B0aW9ucyIsIl90aGlzIiwid3giLCJzaG93TG9hZGluZyIsInJlcXVlc3QiLCJ1cmwiLCIkcGFyZW50IiwiZ2xvYmFsRGF0YSIsImFwaVVybCIsImlkIiwibWV0aG9kIiwic3VjY2VzcyIsInJlcyIsImNvbnNvbGUiLCJsb2ciLCIkYXBwbHkiLCJoaWRlTG9hZGluZyIsInBhZ2UiXSwibWFwcGluZ3MiOiI7Ozs7Ozs7OztBQUVFOzs7Ozs7Ozs7OztBQURBOzs7SUFHcUJBLE07Ozs7Ozs7Ozs7Ozs7O3lMQUNuQkMsTSxHQUFTO0FBQ1AsZ0NBQTBCO0FBRG5CLEssU0FJVEMsSSxHQUFPO0FBQ0xDLGlCQUFXO0FBRE4sSzs7Ozs7MkJBR0FDLE8sRUFBUztBQUNkLFVBQUlDLFFBQVEsSUFBWjtBQUNBQyxTQUFHQyxXQUFIO0FBQ0FELFNBQUdFLE9BQUgsQ0FBVztBQUNUQyxhQUFLLEtBQUtDLE9BQUwsQ0FBYUMsVUFBYixDQUF3QkMsTUFBeEIsR0FBaUMsaUJBQWpDLEdBQXFEUixRQUFRUyxFQUR6RDtBQUVUQyxnQkFBUSxLQUZDO0FBR1RDLGVBSFMsbUJBR0RDLEdBSEMsRUFHSTtBQUNYQyxrQkFBUUMsR0FBUixDQUFZRixHQUFaO0FBQ0E7QUFDQVgsZ0JBQU1GLFNBQU4sR0FBa0JhLElBQUlkLElBQXRCO0FBQ0FHLGdCQUFNYyxNQUFOO0FBQ0FiLGFBQUdjLFdBQUg7QUFDRDtBQVRRLE9BQVg7QUFXRDs7OztFQXRCaUMsZUFBS0MsSTs7a0JBQXBCckIsTSIsImZpbGUiOiJkZXRhaWwuanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbiAgLyogZ2xvYmFsIHd4ICovXG4gIGltcG9ydCB3ZXB5IGZyb20gJ3dlcHknXG5cbiAgZXhwb3J0IGRlZmF1bHQgY2xhc3MgU2VhcmNoIGV4dGVuZHMgd2VweS5wYWdlIHtcbiAgICBjb25maWcgPSB7XG4gICAgICAnbmF2aWdhdGlvbkJhclRpdGxlVGV4dCc6ICfnlLXlvbHor6bmg4UnXG4gICAgfTtcblxuICAgIGRhdGEgPSB7XG4gICAgICBtb3ZpZUluZm86IHt9XG4gICAgfTtcbiAgICBvbkxvYWQob3B0aW9ucykge1xuICAgICAgbGV0IF90aGlzID0gdGhpc1xuICAgICAgd3guc2hvd0xvYWRpbmcoKVxuICAgICAgd3gucmVxdWVzdCh7XG4gICAgICAgIHVybDogdGhpcy4kcGFyZW50Lmdsb2JhbERhdGEuYXBpVXJsICsgJy9tb3ZpZS9zdWJqZWN0LycgKyBvcHRpb25zLmlkLFxuICAgICAgICBtZXRob2Q6ICdHRVQnLFxuICAgICAgICBzdWNjZXNzKHJlcykge1xuICAgICAgICAgIGNvbnNvbGUubG9nKHJlcylcbiAgICAgICAgICAvLyDmraTlpITnnIHnlaXor7fmsYLmmK/lkKbmiJDlip/moKHpqoxcbiAgICAgICAgICBfdGhpcy5tb3ZpZUluZm8gPSByZXMuZGF0YVxuICAgICAgICAgIF90aGlzLiRhcHBseSgpXG4gICAgICAgICAgd3guaGlkZUxvYWRpbmcoKVxuICAgICAgICB9XG4gICAgICB9KVxuICAgIH1cbiAgfVxuIl19

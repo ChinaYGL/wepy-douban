@@ -6,7 +6,7 @@
   </view>
   <view class="movie-list">
     <view class="movie-item"  wx:for="{{$movies$movieList}}" wx:for-item="movie" wx:key="{{movie.id}}">
-      <navigator url="/pages/detail/detail?id={{movie.id}}">
+      <navigator url="/pages/detail?id={{movie.id}}">
         <view class="item-inner">
           <image mode="scaleToFill" src="{{movie.images.medium}}" class="movie-image"/>
           <view>

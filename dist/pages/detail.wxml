@@ -1,6 +1,5 @@
 
   <wxs module="filter" src="../common/filter.wxs"/>
-
   <view>
     <image class="movie-image" mode="scaleToFill" src="{{movieInfo.images.large}}"/>
   </view>

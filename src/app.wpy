@@ -33,25 +33,26 @@ import 'wepy-async-function'
 
 export default class extends wepy.app {
   config = {
-    pages: [
+    'pages': [
       'pages/index',
       'pages/search',
       'pages/detail'
     ],
-    window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'wepy小程序-豆瓣电影',
-      navigationBarTextStyle: 'black'
-    }
+    'window': {
+      'backgroundTextStyle': 'light',
+      'navigationBarBackgroundColor': '#fff',
+      'navigationBarTitleText': 'wepy小程序-豆瓣电影',
+      'navigationBarTextStyle': 'black'
+    },
+    'debug': true
   }
 
   globalData = {
     apiUrl: 'http://localhost:5200'
   }
 
-  getGlobalData(key){
-      return this.globalData[key];
+  getGlobalData(key) {
+    return this.globalData[key]
   };
 
   constructor () {
