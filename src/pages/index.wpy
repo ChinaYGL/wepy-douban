@@ -57,8 +57,6 @@
     };
     formSubmit(e) {
       let _searchKey = e.detail.value.searchKey
-      console.log(_searchKey)
-      console.log(this)
       // 这里做值校验
       if (!_searchKey) return
       this.$navigate({

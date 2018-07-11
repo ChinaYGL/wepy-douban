@@ -18,18 +18,38 @@ app.all('*', function (req, res, next) {
     next();
 });
 
-// 正在上映 API
+// 正在上映
 app.get('/movie/in_theaters', function (req, res) {
     reqHttp(req, res);
 });
 
-// 搜索
+// 电影条目搜索
 app.get('/movie/search', function (req, res) {
     reqHttp(req, res);
 })
 
-// 详情
+// 电影条目信息
 app.get('/movie/subject/:id', function (req, res) {
+    reqHttp(req, res);
+})
+
+// 影人条目信息
+app.get('/movie/celebrity/:id', function (req, res) {
+    reqHttp(req, res);
+})
+
+// Top250
+app.get('/movie/top250', function (req, res) {
+    reqHttp(req, res);
+})
+
+// 北美票房榜
+app.get('/movie/us_box', function (req, res) {
+    reqHttp(req, res);
+})
+
+//即将上映
+app.get('/movie/coming_soon', function (req, res) {
     reqHttp(req, res);
 })
 
