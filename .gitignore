@@ -1,4 +1,12 @@
-/dist
-/node_modules
-/node-proxy/node_modules
+dist/
+node_modules/
+node-proxy/node_modules
+web/style
+sftp-config.json
+log
+npm-debug.log
+.vscode
+coverage
+lerna-debug.log
+.DS_Store
 .wepycache

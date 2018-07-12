@@ -1,93 +1,182 @@
 <style lang="less">
+@import './style/weui.less';
   /**app.wxss**/
   page {
     height: 100%;
-    font-size: 28rpx;
     line-height: 1.6;
     color: #666;
-    background-color: #f8f8f8;
+    background-color: #F8F8F8;
+    font-size: 16px;
+    font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
   }
+  
   checkbox, radio{
     margin-right: 10rpx;
   }
+  
   form{
     width: 100%;
   }
 
   /* padding */
-  .padding-10{
-    padding: 10rpx;
-  }
+  // .padding-10{
+  //   padding: 10rpx;
+  // }
 
   .container {
     min-height: 100%;
     justify-content: space-between;
-    font-size: 32rpx;
+    font-size: 16rpx;
     font-family: -apple-system-font,Helvetica Neue,Helvetica,sans-serif;
+  }
+  
+  .page__hd {
+      padding: 40px;
+  }
+  .page__bd {
+      padding-bottom: 40px;
+  }
+  .page__bd_spacing {
+      padding-left: 15px;
+      padding-right: 15px;
+  }
+
+  .page__ft{
+      padding-bottom: 10px;
+      text-align: center;
+  }
+
+  .page__title {
+      text-align: left;
+      font-size: 20px;
+      font-weight: 400;
+  }
+
+  .page__desc {
+      margin-top: 5px;
+      color: #888888;
+      text-align: left;
+      font-size: 14px;
   }
 </style>
 
 <script>
-import wepy from 'wepy'
-import 'wepy-async-function'
+import wepy from 'wepy';
+import 'wepy-async-function';
 
 export default class extends wepy.app {
-  config = {
-    'pages': [
-      'pages/index',
-      'pages/search',
-      'pages/detail'
-    ],
-    'window': {
-      'backgroundTextStyle': 'light',
-      'navigationBarBackgroundColor': '#fff',
-      'navigationBarTitleText': 'wepy小程序-豆瓣电影',
-      'navigationBarTextStyle': 'black'
-    },
-    'debug': true
-  }
+    config = {
+        'pages': [
+            'pages/index',
+            'pages/search',
+            'pages/detail',
+            'example/index',
+            'example/button',
+            'example/list',
+            'example/input',
+            'example/slider',
+            'example/uploader',
 
-  globalData = {
-    apiUrl: 'http://localhost:5200'
-  }
+            'example/article',
+            'example/badge',
+            'example/flex',
+            'example/footer',
+            'example/gallery',
+            'example/grid',
+            'example/icons',
+            'example/loadmore',
+            'example/panel',
+            'example/preview',
+            'example/progress',
 
-  getGlobalData(key) {
-    return this.globalData[key]
-  };
+            'example/actionsheet',
+            'example/dialog',
+            'example/msg',
+            'example/msg_fail',
+            'example/msg_success',
+            'example/picker',
+            'example/toast',
 
-  constructor () {
-    super()
-    this.use('requestfix')
-  }
+            'example/navbar',
+            'example/tabbar',
 
-  onLaunch() {
-    this.testAsync()
-  }
-
-  sleep (s) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('promise resolved')
-      }, s * 1000)
-    })
-  }
-
-  async testAsync () {
-    const data = await this.sleep(3)
-    console.log(data)
-  }
-
-  getUserInfo(cb) {
-    const that = this
-    if (this.globalData.userInfo) {
-      return this.globalData.userInfo
+            'example/searchbar'
+        ],
+        'tabBar': {
+            'color': '#7A7E83',
+            'selectedColor': '#3cc51f',
+            'borderStyle': 'black',
+            'backgroundColor': '#ffffff',
+            'list': [{
+                'pagePath': 'pages/index',
+                'iconPath': 'images/icon_API.png',
+                'selectedIconPath': 'images/icon_API_HL.png',
+                'text': '电影'
+            }, {
+                'pagePath': 'example/index',
+                'iconPath': 'images/icon_component.png',
+                'selectedIconPath': 'images/icon_component_HL.png',
+                'text': '组件'
+            }]
+        },
+        'window': {
+            'navigationBarTitleText': 'wepy小程序-豆瓣电影',
+            'navigationBarTextStyle': 'black',
+            'navigationBarBackgroundColor': '#f8f8f8',
+            'backgroundColor': '#f8f8f8',
+            'backgroundTextStyle': 'light',
+        },
+        'networkTimeout': {
+            'request': 10000,
+            'connectSocket': 10000,
+            'uploadFile': 10000,
+            'downloadFile': 10000
+        },
+        'debug': true
     }
-    wepy.getUserInfo({
-      success (res) {
-        that.globalData.userInfo = res.userInfo
-        cb && cb(res.userInfo)
-      }
-    })
-  }
+
+    globalData = {
+        apiUrl: 'http://localhost:5200'
+    }
+
+    getGlobalData(key) {
+        return this.globalData[key];
+    };
+
+    constructor () {
+        super();
+        this.use('promisify');
+        this.use('requestfix');
+    }
+
+    onLaunch() {
+        this.testAsync();
+    }
+
+    sleep (s) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('promise resolved');
+            }, s * 1000);
+        });
+    }
+
+    async testAsync () {
+        const data = await this.sleep(3);
+        console.log(data);
+    }
+
+    getUserInfo(cb) {
+        const that = this;
+        if (this.globalData.userInfo) {
+            return this.globalData.userInfo;
+        }
+        wepy.getUserInfo({
+            success (res) {
+                that.globalData.userInfo = res.userInfo;
+                cb && cb(res.userInfo);
+            }
+        });
+    }
 }
 </script>
